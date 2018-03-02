@@ -35,32 +35,20 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="row">
-                    <div class="col-md-4">
+
+                    {% for item in deals1 %}
+
+                     <div class="col-md-4">
                       <div class="card">
-                        <img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
+                        <img class="card-img-top" src={{item.img}} alt="Card image cap">
                         <div class="card-body">
-                          <h5 class="card-title">price</h5>
+                          <h5 class="card-title">{{item.price}}</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="card">
-                        <img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">price</h5>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card">
-                        <img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">price</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                    {% endfor %}
+
                 <div class="carousel-item">
                   <div class="row">
                     <div class="col-md-4">
