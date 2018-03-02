@@ -1,7 +1,13 @@
 .idea
+
 Djangozon/Lib/*
+
 Djangozon/Include/*
+
 Djangozon/tcl/*
+
 Djangozon/Scripts/*
+
 Djangozon/settings.py
+*.pyc
 
