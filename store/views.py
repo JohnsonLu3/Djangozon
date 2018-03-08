@@ -7,7 +7,6 @@ from .models import items
 # Create your views here.
 def index(request):
 
-
     try:
         deals1 = items.objects.all()[:3]
         deals2 = items.objects.all()[3:6]
@@ -19,5 +18,7 @@ def index(request):
         'deals1' : deals1,
         'deals2' : deals2
     }
+
+    print(context)
 
     return render(request, 'store/landing.html', context)

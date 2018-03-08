@@ -1,15 +1,44 @@
 from django.db import models
 from datetime import datetime
+import os
+from uuid import uuid4
 from django.core.validators import RegexValidator
 # Create your models here.
 
 # Item related entities
 
 class items(models.Model):
+
+    def path_and_rename(path):
+        def wrapper(instance, filename):
+            ext = filename.split('.')[-1]
+            # get filename
+            if instance.pk:
+                filename = '{}.{}'.format(instance.pk, ext)
+            else:
+                # set filename as random string
+                filename = '{}.{}'.format(uuid4().hex, ext)
+            # return the whole path to the file
+            return os.path.join(path, filename)
+
+        return wrapper
+
     name = models.CharField(max_length=200)
+
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    img = models.ImageField(upload_to='static_cdn/itemImg/',default='static/img/imgPlaceHolder.png')
+
+    price = models.DecimalField(max_digits=6,
+                                decimal_places=2)
+
+    sale = models.DecimalField(max_digits=6,
+                                decimal_places=2,
+                               default= price)
+
+    onSale = models.BooleanField(default=False)
+
+    img = models.ImageField(upload_to= path_and_rename('static/img/items/'),
+                            default='static/img/imgPlaceHolder.png'
+                            )
 
     def __str__(self):
         return self.name
